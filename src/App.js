@@ -67,12 +67,12 @@ const TYPE_COLORS = {
 };
 
 const STAT_LABELS = {
-  hp: "PS",
-  attack: "Ataque",
-  defense: "Defensa",
-  "special-attack": "At. Esp.",
-  "special-defense": "Def. Esp.",
-  speed: "Velocidad",
+  hp: "HP",
+  attack: "Attack",
+  defense: "Defense",
+  "special-attack": "Sp. Atk",
+  "special-defense": "Sp. Def",
+  speed: "Speed",
 };
 
 const HYPHENATED_SPECIES = new Set([
@@ -337,20 +337,20 @@ const DetailModal = ({ pokemon, onClose }) => {
 
         <Stack direction="row" spacing={2} justifyContent="center" mb={2}>
           <Typography variant="body2" color="text.secondary">
-            Altura: <b style={{ color: "#e2e8f0" }}>{(pokemon.height / 10).toFixed(1)} m</b>
+            Height: <b style={{ color: "#e2e8f0" }}>{(pokemon.height / 10).toFixed(1)} m</b>
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Peso: <b style={{ color: "#e2e8f0" }}>{(pokemon.weight / 10).toFixed(1)} kg</b>
+            Weight: <b style={{ color: "#e2e8f0" }}>{(pokemon.weight / 10).toFixed(1)} kg</b>
           </Typography>
           {pokemon.base_experience > 0 && (
             <Typography variant="body2" color="text.secondary">
-              Exp. base: <b style={{ color: "#e2e8f0" }}>{pokemon.base_experience}</b>
+              Base Exp.: <b style={{ color: "#e2e8f0" }}>{pokemon.base_experience}</b>
             </Typography>
           )}
         </Stack>
 
         <Typography variant="h6" fontWeight={700} sx={{ mt: 2, mb: 1 }}>
-          Estadísticas
+          Statistics
         </Typography>
         <Stack spacing={1.25}>
           {pokemon.stats.map((stat) => (
@@ -363,7 +363,7 @@ const DetailModal = ({ pokemon, onClose }) => {
         </Stack>
 
         <Typography variant="h6" fontWeight={700} sx={{ mt: 3, mb: 1 }}>
-          Habilidades
+          Abilities
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
           {pokemon.abilities.map((ability) => (
@@ -378,7 +378,7 @@ const DetailModal = ({ pokemon, onClose }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary" variant="contained">
-          Cerrar
+          Close
         </Button>
       </DialogActions>
     </Dialog>
@@ -427,7 +427,7 @@ const App = () => {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Error cargando la PokéAPI:", error);
+        console.error("Error loading PokéAPI:", error);
         if (!cancelled) setLoading(false);
       }
     };
@@ -511,7 +511,7 @@ const App = () => {
               <CircularProgress color="primary" />
               {progress.total > 0 && (
                 <Typography color="text.secondary">
-                  Cargando {progress.loaded} / {progress.total} Pokémon...
+                  Loading {progress.loaded} / {progress.total} Pokémon...
                 </Typography>
               )}
             </Stack>
@@ -519,8 +519,8 @@ const App = () => {
             <>
               <Stack spacing={2} mb={3}>
                 <TextField
-                  label="Buscar Pokémon"
-                  placeholder="Ej: pikachu, charizard, eevee..."
+                  label="Search Pokémon"
+                  placeholder="e.g. pikachu, charizard, eevee..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   fullWidth
@@ -550,7 +550,7 @@ const App = () => {
                     useFlexGap
                   >
                     <Chip
-                      label="Todos"
+                      label="All"
                       clickable
                       color={typeFilter === "all" ? "primary" : "default"}
                       onClick={() => setTypeFilter("all")}
@@ -571,13 +571,13 @@ const App = () => {
                   </Stack>
 
                   <FormControl size="small" sx={{ minWidth: 170 }}>
-                    <InputLabel>Ordenar</InputLabel>
+                    <InputLabel>Sort</InputLabel>
                     <Select
                       value={sortKey}
                       onChange={(e) => setSortKey(e.target.value)}
-                      label="Ordenar"
+                      label="Sort"
                     >
-                      <MenuItem value="id">Número</MenuItem>
+                      <MenuItem value="id">Number</MenuItem>
                       <MenuItem value="az">A → Z</MenuItem>
                       <MenuItem value="za">Z → A</MenuItem>
                     </Select>
@@ -587,9 +587,9 @@ const App = () => {
 
               {currentItems.length === 0 ? (
                 <Stack alignItems="center" sx={{ py: 10 }} spacing={1}>
-                  <Typography variant="h6">No hay Pokémon que coincidan</Typography>
+                  <Typography variant="h6">No Pokémon match your search</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Prueba con otra búsqueda o quita el filtro de tipo.
+                    Try a different search or clear the type filter.
                   </Typography>
                 </Stack>
               ) : (
@@ -621,7 +621,7 @@ const App = () => {
                 align="center"
                 sx={{ mt: 5 }}
               >
-                Datos de la PokéAPI · Hecho con React y Material UI
+                Developed by arianna9912
               </Typography>
             </>
           )}
