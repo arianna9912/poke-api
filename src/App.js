@@ -191,7 +191,7 @@ const SpriteBox = styled(Box)(({ glow }) => ({
 
 const TypeChip = styled(Chip)(({ tcolor, selected }) => ({
   fontWeight: 700,
-  color: "#0b1220",
+  color: selected ? "#0b1220" : "#ffffff",
   background: selected ? tcolor : "transparent",
   border: `2px solid ${tcolor}`,
   "&:hover": {
